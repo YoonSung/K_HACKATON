@@ -15,13 +15,13 @@
             android:layout_height="match_parent" >
 
             <TextView
-                android:id="@+id/txtSendTime"
+                android:id="@+id/chatroom_txtSendTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="#0054FF"
                 android:text="00:00:00" />
             <TextView
-                android:id="@+id/txtSendMsg"
+                android:id="@+id/chatroom_txtSendMsg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="message"

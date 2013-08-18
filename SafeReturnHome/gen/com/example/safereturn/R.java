@@ -21,39 +21,45 @@ public final class R {
         public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int chat=0x7f020000;
-        public static final int header=0x7f020001;
-        public static final int ic_launcher=0x7f020002;
-        public static final int plus=0x7f020003;
-        public static final int settings=0x7f020004;
+        public static final int btn_push_close=0x7f020000;
+        public static final int btn_push_open=0x7f020001;
+        public static final int chat=0x7f020002;
+        public static final int header=0x7f020003;
+        public static final int ic_launcher=0x7f020004;
+        public static final int plus=0x7f020005;
+        public static final int settings=0x7f020006;
     }
     public static final class id {
-        public static final int action_settings=0x7f080011;
-        public static final int btnChat=0x7f080010;
-        public static final int btnDate=0x7f08000c;
-        public static final int btnMsgSend=0x7f080009;
-        public static final int btnPlus=0x7f08000d;
-        public static final int btnReceiveTest=0x7f08000b;
-        public static final int btnSendTest=0x7f08000a;
-        public static final int btnSetting=0x7f08000e;
-        public static final int chatImg=0x7f080002;
-        public static final int chatListView=0x7f080007;
-        public static final int edtMsg=0x7f080008;
-        public static final int listView1=0x7f08000f;
-        public static final int txtDate=0x7f080006;
-        public static final int txtName=0x7f080003;
-        public static final int txtReceiveMsg=0x7f080004;
-        public static final int txtReceiveTime=0x7f080005;
-        public static final int txtSendMsg=0x7f080001;
-        public static final int txtSendTime=0x7f080000;
+        public static final int action_settings=0x7f080014;
+        public static final int alertdialog_alertTxt=0x7f080000;
+        public static final int alertdialog_btnClose=0x7f080002;
+        public static final int alertdialog_btnShow=0x7f080001;
+        public static final int btnChat=0x7f080013;
+        public static final int chatroom_btnDate=0x7f08000f;
+        public static final int chatroom_btnMsgSend=0x7f08000c;
+        public static final int chatroom_btnReceiveTest=0x7f08000e;
+        public static final int chatroom_btnSendTest=0x7f08000d;
+        public static final int chatroom_chatImg=0x7f080005;
+        public static final int chatroom_chatListView=0x7f08000a;
+        public static final int chatroom_edtMsg=0x7f08000b;
+        public static final int chatroom_txtDate=0x7f080009;
+        public static final int chatroom_txtName=0x7f080006;
+        public static final int chatroom_txtReceiveMsg=0x7f080007;
+        public static final int chatroom_txtReceiveTime=0x7f080008;
+        public static final int chatroom_txtSendMsg=0x7f080004;
+        public static final int chatroom_txtSendTime=0x7f080003;
+        public static final int main_btnPlus=0x7f080010;
+        public static final int main_btnSetting=0x7f080011;
+        public static final int main_list=0x7f080012;
     }
     public static final class layout {
-        public static final int chat_item0=0x7f030000;
-        public static final int chat_item1=0x7f030001;
-        public static final int chat_item2=0x7f030002;
-        public static final int chatroom=0x7f030003;
-        public static final int main=0x7f030004;
-        public static final int splash=0x7f030005;
+        public static final int alertdialog=0x7f030000;
+        public static final int chat_item0=0x7f030001;
+        public static final int chat_item1=0x7f030002;
+        public static final int chat_item2=0x7f030003;
+        public static final int chatroom=0x7f030004;
+        public static final int main=0x7f030005;
+        public static final int splash=0x7f030006;
     }
     public static final class menu {
         public static final int main=0x7f070000;

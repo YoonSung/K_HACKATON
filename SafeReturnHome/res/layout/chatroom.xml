@@ -5,7 +5,7 @@
     android:orientation="vertical" >
 
     <ListView
-        android:id="@+id/chatListView"
+        android:id="@+id/chatroom_chatListView"
         android:layout_width="match_parent"
         android:layout_height="375dp" >
     </ListView>
@@ -15,7 +15,7 @@
         android:layout_height="wrap_content" >
 
         <EditText
-            android:id="@+id/edtMsg"
+            android:id="@+id/chatroom_edtMsg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -25,7 +25,7 @@
         </EditText>
 
         <Button
-            android:id="@+id/btnMsgSend"
+            android:id="@+id/chatroom_btnMsgSend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -39,21 +39,21 @@
         android:layout_height="wrap_content" >
 
         <Button
-            android:id="@+id/btnSendTest"
+            android:id="@+id/chatroom_btnSendTest"
             android:layout_width="0px"
             android:layout_height="wrap_content"
             android:text="send"
             android:layout_weight="1" />
 
         <Button
-            android:id="@+id/btnReceiveTest"
+            android:id="@+id/chatroom_btnReceiveTest"
             android:layout_width="0px"
             android:layout_height="wrap_content"
             android:text="receive"
             android:layout_weight="1" />
 
         <Button
-            android:id="@+id/btnDate"
+            android:id="@+id/chatroom_btnDate"
             android:layout_width="0px"
             android:layout_height="wrap_content"
             android:text="date" 

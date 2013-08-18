@@ -39,20 +39,20 @@ public class ChatRoom extends Activity implements OnClickListener{
 	    setContentView(R.layout.chatroom);
 	    
 	    //Initialize variables start
-	    btnMsgSend = (Button)findViewById(R.id.btnMsgSend);
+	    btnMsgSend = (Button)findViewById(R.id.chatroom_btnMsgSend);
 	    btnMsgSend.setOnClickListener(this);
 	    
-	    btnSendTest= (Button)findViewById(R.id.btnSendTest);
+	    btnSendTest= (Button)findViewById(R.id.chatroom_btnSendTest);
 	    btnSendTest.setOnClickListener(this);
 	    
-	    btnReceiveTest = (Button)findViewById(R.id.btnReceiveTest);
+	    btnReceiveTest = (Button)findViewById(R.id.chatroom_btnReceiveTest);
 	    btnReceiveTest.setOnClickListener(this);
 	    
-	    btnDateTest= (Button)findViewById(R.id.btnDate);
+	    btnDateTest= (Button)findViewById(R.id.chatroom_btnDate);
 	    btnDateTest.setOnClickListener(this);
 	    
-	    edtMsgBox = (EditText)findViewById(R.id.edtMsg);
-	    msgList = (ListView)findViewById(R.id.chatListView);
+	    edtMsgBox = (EditText)findViewById(R.id.chatroom_edtMsg);
+	    msgList = (ListView)findViewById(R.id.chatroom_chatListView);
 	    
 	    
 	    ArrayList<Message> msgArray = new ArrayList<Message>();
@@ -73,16 +73,16 @@ public class ChatRoom extends Activity implements OnClickListener{
 		switch (v.getId()) {
 		
 		//type 0 is user send, type 1 is user receive, type 2 is date display 
-		case R.id.btnMsgSend:
+		case R.id.chatroom_btnMsgSend:
 			msgData = new Message(0, edtMsgBox.getText().toString(), timeFormat.format(new Date()));
 			break;
-		case R.id.btnSendTest:
+		case R.id.chatroom_btnSendTest:
 			msgData = new Message(0, edtMsgBox.getText().toString(), timeFormat.format(new Date()));
 			break;
-		case R.id.btnReceiveTest:
+		case R.id.chatroom_btnReceiveTest:
 			msgData = new Message(1, edtMsgBox.getText().toString(), timeFormat.format(new Date()));
 			break;
-		case R.id.btnDate:
+		case R.id.chatroom_btnDate:
 			msgData = new Message(2, dateFormat.format(new Date()));
 			break;
 		}
@@ -160,8 +160,8 @@ public class ChatRoom extends Activity implements OnClickListener{
 			if (msgInstance != null) {
 				if (type == 0) {
 					TextView txtMsgSend, txtSendTime;
-					txtMsgSend = (TextView)view.findViewById(R.id.txtSendMsg);
-					txtSendTime = (TextView)view.findViewById(R.id.txtSendTime);
+					txtMsgSend = (TextView)view.findViewById(R.id.chatroom_txtSendMsg);
+					txtSendTime = (TextView)view.findViewById(R.id.chatroom_txtSendTime);
 					
 					txtMsgSend.setText(msgInstance.getMessage());
 					txtSendTime.setText(msgInstance.getTimeFormat());
@@ -169,9 +169,9 @@ public class ChatRoom extends Activity implements OnClickListener{
 				
 				if (type == 1) {
 					TextView txtName, txtMsgReceive, txtReceiveTime;
-					txtName = (TextView)view.findViewById(R.id.txtName);
-					txtMsgReceive = (TextView)view.findViewById(R.id.txtReceiveMsg);
-					txtReceiveTime = (TextView)view.findViewById(R.id.txtReceiveTime);
+					txtName = (TextView)view.findViewById(R.id.chatroom_txtName);
+					txtMsgReceive = (TextView)view.findViewById(R.id.chatroom_txtReceiveMsg);
+					txtReceiveTime = (TextView)view.findViewById(R.id.chatroom_txtReceiveTime);
 					
 					txtName.setText(msgInstance.getName());
 					txtMsgReceive.setText(msgInstance.getMessage());
@@ -179,7 +179,7 @@ public class ChatRoom extends Activity implements OnClickListener{
 				}
 				
 				if (type == 2) {
-					TextView txtDate = (TextView)view.findViewById(R.id.txtDate);
+					TextView txtDate = (TextView)view.findViewById(R.id.chatroom_txtDate);
 					
 					txtDate.setText(msgInstance.getDayFormat());
 				}

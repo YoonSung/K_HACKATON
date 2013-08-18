@@ -10,6 +10,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 import android.content.Context;
+import android.os.PowerManager;
+
 import com.google.android.gcm.GCMRegistrar;
 
 public class GCMCommon {
@@ -17,8 +19,7 @@ public class GCMCommon {
 	public static final String SERVER_URL = "http://54.250.171.142";
     public static final String SENDER_ID = "563625196391";
     private String regId;
-    
-    
+
     public String getRegId() {
 		return regId;
 	}
@@ -109,5 +110,4 @@ public class GCMCommon {
             }
         }
       }
-
 }

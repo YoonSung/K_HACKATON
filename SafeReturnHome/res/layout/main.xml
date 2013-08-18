@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
         <Button
-            android:id="@+id/btnPlus"
+            android:id="@+id/main_btnPlus"
             android:layout_width="wrap_content"
             android:layout_weight="1"
             android:text="add"
@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
              />
         <Button
-            android:id="@+id/btnSetting"
+            android:id="@+id/main_btnSetting"
 			android:layout_width="wrap_content"
             android:layout_weight="1"
             android:text="setting"
@@ -27,7 +27,7 @@
     </LinearLayout>
 
     <ListView
-        android:id="@+id/listView1"
+        android:id="@+id/main_list"
         android:layout_width="match_parent"
         android:layout_height="0px"
         android:layout_weight="1" >
