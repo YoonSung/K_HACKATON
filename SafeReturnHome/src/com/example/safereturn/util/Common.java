@@ -86,4 +86,7 @@ public class Common {
     	PowerManager pm = (PowerManager)context.getSystemService(Context.POWER_SERVICE);
     	return pm.isScreenOn();
     }
+	
+	
+	
 }

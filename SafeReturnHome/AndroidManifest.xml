@@ -9,11 +9,11 @@
         android:targetSdkVersion="14" />
 
     <permission
-        android:name="com.example.practicegcm.permission.C2D_MESSAGE"
+        android:name="com.example.safereturn.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="com.example.practicegcm.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.example.safereturn.permission.C2D_MESSAGE" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="com.google.android.c2dm.permission.SEND" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -33,7 +33,8 @@
             </intent-filter>
         </activity>
         
-        <activity android:name=".chat.ChatRoom" />
+        <activity android:name="com.example.safereturn.ChatRoom"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name="Main" />
         
         <receiver
@@ -44,11 +45,11 @@
                 <action android:name ="com.google.android.c2dm.intent.RECEIVE" />
                 <!-- Receives the registration id. -->
                 <action android:name ="com.google.android.c2dm.intent.REGISTRATION" />
-                <category android:name="com.example.practicegcm"/>
+                <category android:name="com.example.safereturn"/>
             </intent-filter>
         </receiver>
         
-        <service android:name="GCMIntentService"></service>
+        <service android:name="com.example.safereturn.GCMIntentService"></service>
         <activity android:name=".util.AlertDialog"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
         

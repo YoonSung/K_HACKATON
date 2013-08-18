@@ -8,8 +8,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.safereturn.ChatRoom;
 import com.example.safereturn.R;
-import com.example.safereturn.chat.ChatRoom;
 
 public class AlertDialog extends Activity implements OnClickListener{
 
@@ -36,6 +36,7 @@ public class AlertDialog extends Activity implements OnClickListener{
 		switch (v.getId()) {
 			case R.id.alertdialog_btnShow:
 				startActivity(new Intent(AlertDialog.this, ChatRoom.class));
+				finish();
 				break;
 			case R.id.alertdialog_btnClose:
 				finish();

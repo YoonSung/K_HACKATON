@@ -1,6 +1,6 @@
-package com.example.safereturn.chat;
+package com.example.safereturn;
 
-public class Message {
+public class ChatMessage {
 
 	private int type;
 	private String name = "정윤성";
@@ -8,13 +8,13 @@ public class Message {
 	private String timeFormat;
 	private String dayFormat;
 	
-	Message(int type, String msg, String timeFormat) {
+	ChatMessage(int type, String msg, String timeFormat) {
 		this.type = type;
 		this.msg = msg;
 		this.timeFormat = timeFormat;
 	}
 
-	Message(int type, String dayFormat) {
+	ChatMessage(int type, String dayFormat) {
 		this.type = type;
 		this.dayFormat = dayFormat;
 	}

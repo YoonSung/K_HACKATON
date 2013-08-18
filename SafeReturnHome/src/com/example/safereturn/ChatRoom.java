@@ -1,5 +1,6 @@
-package com.example.safereturn.chat;
+package com.example.safereturn;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +22,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.safereturn.R;
+import com.example.safereturn.gcm.GCMCommon;
+import com.google.android.gcm.GCMRegistrar;
+import com.google.android.gcm.server.Message;
+import com.google.android.gcm.server.Result;
+import com.google.android.gcm.server.Sender;
 
 public class ChatRoom extends Activity implements OnClickListener{
 
@@ -37,10 +44,44 @@ public class ChatRoom extends Activity implements OnClickListener{
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.chatroom);
+	    //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 	    
 	    //Initialize variables start
 	    btnMsgSend = (Button)findViewById(R.id.chatroom_btnMsgSend);
-	    btnMsgSend.setOnClickListener(this);
+	    //btnMsgSend.setOnClickListener(this);
+	    
+	    //test
+	    btnMsgSend.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				//TEST CODE START
+				
+				new Thread(new Runnable() {
+					@Override
+					public void run() {
+						Sender sender = new Sender(GCMCommon.API_KEY);
+						Message message = new Message.Builder().addData("title", "")
+															   .addData("msg", edtMsgBox.getText().toString()).build();
+						
+						try {
+							String regId = GCMCommon.getRegId();//GCMRegistrar.getRegistrationId(ChatRoom.this);
+							System.out.println("   chatroom   "+regId);
+							Result result = sender.send(message, regId, 5);
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+				}).start();
+				
+				//TEST CODE END
+			}
+		});
+	    
+	    
+	    
+	    
 	    
 	    btnSendTest= (Button)findViewById(R.id.chatroom_btnSendTest);
 	    btnSendTest.setOnClickListener(this);
@@ -55,7 +96,7 @@ public class ChatRoom extends Activity implements OnClickListener{
 	    msgList = (ListView)findViewById(R.id.chatroom_chatListView);
 	    
 	    
-	    ArrayList<Message> msgArray = new ArrayList<Message>();
+	    ArrayList<ChatMessage> msgArray = new ArrayList<ChatMessage>();
 	    msgAdapter = new MessageAdapter(msgArray);
 	    msgList.setAdapter(msgAdapter);
 	    
@@ -68,22 +109,22 @@ public class ChatRoom extends Activity implements OnClickListener{
 	@Override
 	public void onClick(View v) {
 		
-		Message msgData = null;
+		ChatMessage msgData = null;
 		
 		switch (v.getId()) {
 		
 		//type 0 is user send, type 1 is user receive, type 2 is date display 
 		case R.id.chatroom_btnMsgSend:
-			msgData = new Message(0, edtMsgBox.getText().toString(), timeFormat.format(new Date()));
+			msgData = new ChatMessage(0, edtMsgBox.getText().toString(), timeFormat.format(new Date()));
 			break;
 		case R.id.chatroom_btnSendTest:
-			msgData = new Message(0, edtMsgBox.getText().toString(), timeFormat.format(new Date()));
+			msgData = new ChatMessage(0, edtMsgBox.getText().toString(), timeFormat.format(new Date()));
 			break;
 		case R.id.chatroom_btnReceiveTest:
-			msgData = new Message(1, edtMsgBox.getText().toString(), timeFormat.format(new Date()));
+			msgData = new ChatMessage(1, edtMsgBox.getText().toString(), timeFormat.format(new Date()));
 			break;
 		case R.id.chatroom_btnDate:
-			msgData = new Message(2, dateFormat.format(new Date()));
+			msgData = new ChatMessage(2, dateFormat.format(new Date()));
 			break;
 		}
 		
@@ -99,14 +140,14 @@ public class ChatRoom extends Activity implements OnClickListener{
 	public class MessageAdapter extends BaseAdapter{
 
 		private LayoutInflater inflater;
-		private ArrayList<Message> msgList;
+		private ArrayList<ChatMessage> msgList;
 		
-		public MessageAdapter(ArrayList<Message> msgList) {
+		public MessageAdapter(ArrayList<ChatMessage> msgList) {
 			this.msgList = msgList; 
 			inflater = (LayoutInflater) getSystemService (Context.LAYOUT_INFLATER_SERVICE);
 		}
 
-		public void add(Message msgData) {
+		public void add(ChatMessage msgData) {
 			msgList.add(msgData);
 			notifyDataSetChanged();
 		}
@@ -117,7 +158,7 @@ public class ChatRoom extends Activity implements OnClickListener{
 		}
 
 		@Override
-		public Message getItem(int position) {
+		public ChatMessage getItem(int position) {
 			return msgList.get(position);
 		}
 
@@ -154,7 +195,7 @@ public class ChatRoom extends Activity implements OnClickListener{
 				view = convertView;
 			}
 			
-			Message msgInstance = msgList.get(position);
+			ChatMessage msgInstance = msgList.get(position);
 			
 			//date is not null
 			if (msgInstance != null) {

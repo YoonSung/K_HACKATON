@@ -1,7 +1,6 @@
 package com.example.safereturn;
 
 import com.example.safereturn.R;
-import com.example.safereturn.chat.ChatRoom;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
