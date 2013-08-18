@@ -1,5 +1,8 @@
 package com.example.safereturn;
 
+import com.example.safereturn.R;
+import com.example.safereturn.R.id;
+import com.example.safereturn.R.layout;
 import com.example.safereturn.chat.ChatRoom;
 
 import android.app.Activity;
@@ -7,21 +10,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ImageButton;
+import android.widget.Button;
+
 
 public class Main extends Activity implements OnClickListener{
 
-	ImageButton btnPlus, btnSetting, btnChatting;
-	
+	Button btnPlus, btnSetting, btnChatting;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
+	    setContentView(R.layout.main);
 	    
-	    btnPlus = (ImageButton)findViewById(R.id.btnPlus);
+	    btnPlus = (Button)findViewById(R.id.btnPlus);
 	    btnPlus.setOnClickListener(this);
-	    btnSetting = (ImageButton)findViewById(R.id.btnSetting);
+	    btnSetting = (Button)findViewById(R.id.btnSetting);
 	    btnSetting.setOnClickListener(this);
-	    btnChatting = (ImageButton)findViewById(R.id.btnChat);
+	    btnChatting = (Button)findViewById(R.id.btnChat);
 	    btnChatting.setOnClickListener(this);
 	}
 
