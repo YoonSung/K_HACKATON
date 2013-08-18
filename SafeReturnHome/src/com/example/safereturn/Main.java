@@ -1,10 +1,7 @@
 package com.example.safereturn;
 
 import com.example.safereturn.R;
-import com.example.safereturn.R.id;
-import com.example.safereturn.R.layout;
 import com.example.safereturn.chat.ChatRoom;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,7 +11,10 @@ import android.widget.Button;
 
 
 public class Main extends Activity implements OnClickListener{
-
+	
+	//private final String LOG_ERROR = "SafeReturn Main.java";
+	
+	
 	Button btnPlus, btnSetting, btnChatting;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

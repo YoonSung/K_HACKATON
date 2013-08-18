@@ -4,9 +4,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -18,11 +20,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.safereturn.R;
-import com.example.safereturn.R.id;
-import com.example.safereturn.R.layout;
 
 public class ChatRoom extends Activity implements OnClickListener{
 
+	public static Handler mHandler = new Handler();
 	
 	private MessageAdapter msgAdapter;
 	private ListView msgList;
