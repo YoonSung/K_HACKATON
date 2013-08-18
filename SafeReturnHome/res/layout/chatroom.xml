@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ListView
+        android:id="@+id/chatList"
+        android:layout_width="match_parent"
+        android:layout_height="375dp" >
+    </ListView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <EditText
+            android:id="@+id/edtMsg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10" >
+
+            <requestFocus />
+        </EditText>
+
+        <Button
+            android:id="@+id/btnMsgSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="send" />
+
+    </LinearLayout>
+	
+	<!--  test code -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/btnSendTest"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:text="send"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btnReceiveTest"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:text="receive"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btnDate"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:text="date" 
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+</LinearLayout>
