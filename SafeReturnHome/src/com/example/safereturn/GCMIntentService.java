@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.safereturn.chat.ChatRoom;
 import com.example.safereturn.gcm.GCMCommon;
+import com.example.safereturn.util.Common;
 import com.google.android.gcm.GCMBaseIntentService;
 
 public class GCMIntentService extends GCMBaseIntentService{
@@ -21,17 +23,20 @@ public class GCMIntentService extends GCMBaseIntentService{
 	// push를 받을 경우 push 메세지에 데이터를 intent값으로 받으며 이 intent값을 분석하여 특정 동작을 수행할 수 있다.
 	@Override
 	protected void onMessage(Context context, Intent message) {
-		
 		if(message == null)
 			return;
+		
 		final String gcmMsg = "MESSAGE : "+message.getStringExtra("title")
 										  +""
 										  +message.getStringExtra("msg");
+
+		Log.e(LOG_ERROR, "message : "+gcmMsg);
 		
 		ChatRoom.mHandler.post(new Runnable() {
 			@Override
 			public void run() {
-				Toast.makeText(getApplicationContext(), gcmMsg, Toast.LENGTH_LONG).show();
+				Common common = new Common(getApplicationContext());
+				common.showMsg(gcmMsg);
 			}
 		});
 	}

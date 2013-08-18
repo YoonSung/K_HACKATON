@@ -1,4 +1,4 @@
-package com.example.safereturn;
+package com.example.safereturn.chat;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -8,6 +8,7 @@ import java.util.Locale;
 
 import android.app.Activity;
 import android.content.Context;
+import android.media.AudioRecord.OnRecordPositionUpdateListener;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -22,6 +23,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.safereturn.R;
+import com.example.safereturn.R.id;
+import com.example.safereturn.R.layout;
 import com.example.safereturn.gcm.GCMCommon;
 import com.google.android.gcm.GCMRegistrar;
 import com.google.android.gcm.server.Message;
@@ -31,6 +34,20 @@ import com.google.android.gcm.server.Sender;
 public class ChatRoom extends Activity implements OnClickListener{
 
 	public static Handler mHandler = new Handler();
+	public static boolean VISIBLE = false;
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		ChatRoom.VISIBLE = true;
+	}
+	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		ChatRoom.VISIBLE = false;
+	}
+	
 	
 	private MessageAdapter msgAdapter;
 	private ListView msgList;

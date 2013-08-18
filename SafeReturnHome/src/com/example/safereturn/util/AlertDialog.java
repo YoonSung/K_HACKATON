@@ -8,8 +8,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.safereturn.ChatRoom;
 import com.example.safereturn.R;
+import com.example.safereturn.chat.ChatRoom;
 
 public class AlertDialog extends Activity implements OnClickListener{
 

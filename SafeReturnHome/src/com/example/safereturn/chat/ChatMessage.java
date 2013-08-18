@@ -1,4 +1,4 @@
-package com.example.safereturn;
+package com.example.safereturn.chat;
 
 public class ChatMessage {
 

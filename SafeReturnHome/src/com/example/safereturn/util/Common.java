@@ -1,12 +1,16 @@
 package com.example.safereturn.util;
 
 
+import java.io.File;
+
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.PowerManager;
+import android.os.Vibrator;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.WindowManager;
@@ -16,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.safereturn.R;
+import com.example.safereturn.chat.ChatRoom;
 
 public class Common {
 	
@@ -26,29 +31,47 @@ public class Common {
 	}
 	
 	public void showMsg(String message) {
+		if(ChatRoom.VISIBLE)
+			return;
+		
+		NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+		
+		Intent intent = new Intent(context, AlertDialog.class);
+		intent.putExtra("msg", message);
+		
+		PendingIntent pendingIntent = PendingIntent.getActivity(context, 0,intent, PendingIntent.FLAG_CANCEL_CURRENT);
+		Notification notification = new Notification(R.drawable.ic_launcher,
+				"새로운 알림이 도착했습니다.", System.currentTimeMillis());
+		notification.setLatestEventInfo(context, "SafeReturn",
+				message, pendingIntent);
+		
+		notification.flags = Notification.FLAG_AUTO_CANCEL;
+		int notiId = (int) System.currentTimeMillis();
+		
+		//vibrate
+		Vibrator vibe = (Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE);
+		vibe.vibrate(500);
+		
+		//rington
+		String uriPath = "android.resource://"+context.getPackageName()+File.separator+R.raw.sound;
+		notification.sound = Uri.parse(uriPath);
+		
+		nm.notify(notiId, notification);
+		
 		
     	if (isScreenOn()) {
     		alertToast(message);
     	} else {
     		
-    		NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-
-    		Intent intent = new Intent(context, AlertDialog.class);
-    		intent.putExtra("msg", message);
-    		
-    		PendingIntent pendingIntent = PendingIntent.getActivity(context, 0,intent, PendingIntent.FLAG_CANCEL_CURRENT);
-    		Notification notification = new Notification(R.drawable.ic_launcher,
-    				"새로운 알림이 도착했습니다.", System.currentTimeMillis());
-    		notification.setLatestEventInfo(context, "새로운 알림이 도착했습니다.",
-    				"새로운 알림을 확인 해보세요.", pendingIntent);
-    		
-    		notification.flags = Notification.FLAG_AUTO_CANCEL;
-    		int notiId = 0xffff0008;
-    		nm.notify(notiId, notification);
     	}
     }
     
-    private void alertToast(String message) {
+    private Vibrator getSystemService(String vibratorService) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private void alertToast(String message) {
     	Toast toast;
 		int nWidth, nHeight;
         Display display=((WindowManager)context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
@@ -57,7 +80,7 @@ public class Common {
         if(nWidth>nHeight){
           nWidth=nHeight;
         }
-		toast=Toast.makeText(context, message+ " 도착.", Toast.LENGTH_LONG);
+		toast=Toast.makeText(context, message, Toast.LENGTH_LONG);
 		toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP, 0, (nHeight/3));
 		LinearLayout layout=(LinearLayout)toast.getView();
 		layout.setOrientation(LinearLayout.HORIZONTAL);
@@ -86,7 +109,4 @@ public class Common {
     	PowerManager pm = (PowerManager)context.getSystemService(Context.POWER_SERVICE);
     	return pm.isScreenOn();
     }
-	
-	
-	
 }

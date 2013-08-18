@@ -17,6 +17,7 @@
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="com.google.android.c2dm.permission.SEND" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
     <application
         android:allowBackup="true"
@@ -33,7 +34,7 @@
             </intent-filter>
         </activity>
         
-        <activity android:name="com.example.safereturn.ChatRoom"
+        <activity android:name="com.example.safereturn.chat.ChatRoom"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name="Main" />
         
