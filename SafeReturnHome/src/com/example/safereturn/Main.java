@@ -2,6 +2,7 @@ package com.example.safereturn;
 
 import com.example.safereturn.R;
 import com.example.safereturn.chat.ChatRoom;
+import com.example.safereturn.nmap.MapActivity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -37,6 +38,7 @@ public class Main extends Activity implements OnClickListener{
 			startActivity(new Intent(Main.this, ChatRoom.class));
 			break;
 		case R.id.main_btnPlus:
+			startActivity(new Intent(Main.this, MapActivity.class));
 			break;
 		case R.id.main_btnSetting:
 			break;

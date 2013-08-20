@@ -8,11 +8,13 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="right"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent"
+                    android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp"  >
 
             <TextView
                 android:id="@+id/chatroom_txtSendTime"
@@ -25,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="message"
-                android:background="#FFE5C2" />
+                android:background="#00000000" />
 
         </LinearLayout>
 

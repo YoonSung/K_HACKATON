@@ -7,7 +7,9 @@
         android:id="@+id/chatroom_chatImg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/ic_launcher"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -35,7 +37,7 @@
                 android:id="@+id/chatroom_txtReceiveTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#0054FF"
+                android:background="#00000000"
                 android:text="00:00:00" />
         </LinearLayout>
 

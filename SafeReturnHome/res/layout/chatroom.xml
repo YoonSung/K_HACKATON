@@ -7,7 +7,10 @@
     <ListView
         android:id="@+id/chatroom_chatListView"
         android:layout_width="match_parent"
-        android:layout_height="375dp" >
+        android:layout_height="375dp"
+        android:background="#DAD9FF"
+        android:divider="#00000000"
+        android:dividerHeight="0dp" >
     </ListView>
 
     <LinearLayout
@@ -19,6 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:singleLine="true"
             android:ems="10" >
 
             <requestFocus />
@@ -30,10 +34,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="send" />
-
     </LinearLayout>
-	
-	<!--  test code -->
+
+    <!-- test code -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
@@ -42,22 +46,22 @@
             android:id="@+id/chatroom_btnSendTest"
             android:layout_width="0px"
             android:layout_height="wrap_content"
-            android:text="send"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:text="send" />
 
         <Button
             android:id="@+id/chatroom_btnReceiveTest"
             android:layout_width="0px"
             android:layout_height="wrap_content"
-            android:text="receive"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:text="receive" />
 
         <Button
             android:id="@+id/chatroom_btnDate"
             android:layout_width="0px"
             android:layout_height="wrap_content"
-            android:text="date" 
-            android:layout_weight="1"/>
-
+            android:layout_weight="1"
+            android:text="date" />
     </LinearLayout>
+
 </LinearLayout>

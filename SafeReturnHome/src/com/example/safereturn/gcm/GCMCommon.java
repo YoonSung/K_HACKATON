@@ -16,7 +16,7 @@ import com.google.android.gcm.GCMRegistrar;
 
 public class GCMCommon {
 	
-	//public static final String SERVER_URL = "http://54.250.171.142";
+	public static final String SERVER_URL = "http://54.250.171.142";
     public static final String SENDER_ID = "563625196391";
     public static final String API_KEY = "AIzaSyATuU0glOHHavZAU9VAzIEy5EB-ho2f4FQ";
     private static String regId;
@@ -38,13 +38,13 @@ public class GCMCommon {
         params.put("regId", regId);
 
         // Once GCM returns a registration id, we need to register it in the server. 
-//        try {
-//                //post(serverUrl, params);
-//                GCMRegistrar.setRegisteredOnServer(context, true);
-//                return true;
-//            } catch (IOException e) {
-//            	e.printStackTrace();
-//            }
+        try {
+                post(GCMCommon.SERVER_URL, params);
+                GCMRegistrar.setRegisteredOnServer(context, true);
+                return true;
+            } catch (IOException e) {
+            	e.printStackTrace();
+            }
         return false;
     }
 
@@ -55,17 +55,17 @@ public class GCMCommon {
         //String serverUrl = SERVER_URL + "/unregister";
         Map<String, String> params = new HashMap<String, String>();
         params.put("regId", regId);
-//        try {
-//            post(serverUrl, params);
-//            GCMRegistrar.setRegisteredOnServer(context, false);
-//        } catch (IOException e) {
-//        	//handle error (todo)
-//            // At this point the device is unregistered from GCM, but still
-//            // registered in the server.
-//            // We could try to unregister again, but it is not necessary:
-//            // if the server tries to send a message to the device, it will get
-//            // a "NotRegistered" error message and should unregister the device.
-//        }
+        try {
+            post(GCMCommon.SERVER_URL, params);
+            GCMRegistrar.setRegisteredOnServer(context, false);
+        } catch (IOException e) {
+        	//handle error (todo)
+            // At this point the device is unregistered from GCM, but still
+            // registered in the server.
+            // We could try to unregister again, but it is not necessary:
+            // if the server tries to send a message to the device, it will get
+            // a "NotRegistered" error message and should unregister the device.
+        }
     }
     
     

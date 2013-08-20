@@ -11,6 +11,7 @@ import android.os.Message;
 import android.util.Log;
 
 import com.example.safereturn.gcm.GCMCommon;
+import com.example.safereturn.util.Common;
 import com.google.android.gcm.GCMRegistrar;
 
 public class Splash extends Activity {
@@ -44,31 +45,31 @@ public class Splash extends Activity {
                 // It's also necessary to cancel the thread onDestroy(),
                 // hence the use of AsyncTask instead of a raw thread.
                 final Context context = this;
-//                mRegisterTask = new AsyncTask<Void, Void, Void>() {
-//
-//                    @Override
-//                    protected Void doInBackground(Void... params) {
-//                        boolean registered =
-//                                GCMCommon.register(context, regId);
-//                        // At this point all attempts to register with the app
-//                        // server failed, so we need to unregister the device
-//                        // from GCM - the app will try to register again when
-//                        // it is restarted. Note that GCM will send an
-//                        // unregistered callback upon completion, but
-//                        // GCMIntentService.onUnregistered() will ignore it.
-//                        if (!registered) {
-//                            GCMRegistrar.unregister(context);
-//                        }
-//                        return null;
-//                    }
-//
-//                    @Override
-//                    protected void onPostExecute(Void result) {
-//                        mRegisterTask = null;
-//                    }
-//
-//                };
-//                mRegisterTask.execute(null, null, null);
+                mRegisterTask = new AsyncTask<Void, Void, Void>() {
+
+                    @Override
+                    protected Void doInBackground(Void... params) {
+                        boolean registered =
+                                GCMCommon.register(context, regId);
+                        // At this point all attempts to register with the app
+                        // server failed, so we need to unregister the device
+                        // from GCM - the app will try to register again when
+                        // it is restarted. Note that GCM will send an
+                        // unregistered callback upon completion, but
+                        // GCMIntentService.onUnregistered() will ignore it.
+                        if (!registered) {
+                            GCMRegistrar.unregister(context);
+                        }
+                        return null;
+                    }
+
+                    @Override
+                    protected void onPostExecute(Void result) {
+                        mRegisterTask = null;
+                    }
+
+                };
+                mRegisterTask.execute(null, null, null);
             }
         }
         GCMCommon.setRegId(GCMRegistrar.getRegistrationId(this));
@@ -90,7 +91,17 @@ public class Splash extends Activity {
 		
 		@Override
 		public void handleMessage(Message msg) {
-			activity.startActivity(new Intent(activity, Main.class));
+			
+			Common common = new Common(activity);
+			boolean isFirst = common.isFirstLogin("first");
+			
+			if (isFirst) {
+				//common.savePreference("first", false);
+				activity.startActivity(new Intent(activity, AddGroup.class));
+			} else {
+				activity.startActivity(new Intent(activity, Main.class));
+			}
+			
 			activity.finish();
 		}
 	}

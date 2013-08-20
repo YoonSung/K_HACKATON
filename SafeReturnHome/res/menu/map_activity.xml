@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/menu_findmylocation"
+        android:title="Find My Location" />
+    <item android:id="@+id/menu_findmyaddress"
+        android:title="Find My Address" />
+	<item android:id="@+id/menu_history"
+		android:title="View my locations" />    
+	<item android:id="@+id/menu_starttracking"
+		android:title="Track my location" />
+	<item android:id="@+id/menu_stoptracking"
+		android:title="Stop tracking my location" />	
+</menu>

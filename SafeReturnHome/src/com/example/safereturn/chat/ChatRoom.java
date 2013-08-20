@@ -5,28 +5,21 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
-
 import android.app.Activity;
 import android.content.Context;
-import android.media.AudioRecord.OnRecordPositionUpdateListener;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import com.example.safereturn.R;
-import com.example.safereturn.R.id;
-import com.example.safereturn.R.layout;
 import com.example.safereturn.gcm.GCMCommon;
-import com.google.android.gcm.GCMRegistrar;
 import com.google.android.gcm.server.Message;
 import com.google.android.gcm.server.Result;
 import com.google.android.gcm.server.Sender;
@@ -61,7 +54,6 @@ public class ChatRoom extends Activity implements OnClickListener{
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.chatroom);
-	    //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 	    
 	    //Initialize variables start
 	    btnMsgSend = (Button)findViewById(R.id.chatroom_btnMsgSend);
@@ -111,6 +103,7 @@ public class ChatRoom extends Activity implements OnClickListener{
 	    
 	    edtMsgBox = (EditText)findViewById(R.id.chatroom_edtMsg);
 	    msgList = (ListView)findViewById(R.id.chatroom_chatListView);
+	    msgList.setDivider(null);
 	    
 	    
 	    ArrayList<ChatMessage> msgArray = new ArrayList<ChatMessage>();
@@ -217,12 +210,17 @@ public class ChatRoom extends Activity implements OnClickListener{
 			//date is not null
 			if (msgInstance != null) {
 				if (type == 0) {
+					
+					String message = msgInstance.getMessage(); 
+					String time = msgInstance.getTimeFormat();
+					
 					TextView txtMsgSend, txtSendTime;
 					txtMsgSend = (TextView)view.findViewById(R.id.chatroom_txtSendMsg);
 					txtSendTime = (TextView)view.findViewById(R.id.chatroom_txtSendTime);
 					
-					txtMsgSend.setText(msgInstance.getMessage());
-					txtSendTime.setText(msgInstance.getTimeFormat());
+					if(message != null)
+					txtMsgSend.setText(message);
+					txtSendTime.setText(time);
 				}
 				
 				if (type == 1) {

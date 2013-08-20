@@ -1,16 +1,16 @@
 package com.example.safereturn.util;
 
-
 import java.io.File;
-
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.PowerManager;
 import android.os.Vibrator;
+import android.preference.PreferenceManager;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.WindowManager;
@@ -18,16 +18,38 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.safereturn.R;
 import com.example.safereturn.chat.ChatRoom;
 
 public class Common {
 	
 	Context context;
+	SharedPreferences spf;
+	SharedPreferences.Editor editor;
 	
 	public Common(Context context) {
 		this.context = context; 
+		spf=PreferenceManager.getDefaultSharedPreferences(context);
+		editor=spf.edit();
+	}
+	
+	public void savePreference(String key, String value) {
+		editor.putString(key, value);
+		editor.commit();
+	}
+	
+	public void savePreference(String key, boolean value) {
+		editor.putBoolean(key, value);
+		editor.commit();
+	}
+	
+	public String readStringPreference(String key) {
+		return spf.getString(key, null);
+	}
+	
+	
+	public boolean isFirstLogin(String key) {
+		return spf.getBoolean(key, true);
 	}
 	
 	public void showMsg(String message) {
@@ -65,11 +87,6 @@ public class Common {
     		
     	}
     }
-    
-    private Vibrator getSystemService(String vibratorService) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	private void alertToast(String message) {
     	Toast toast;
