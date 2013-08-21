@@ -55,14 +55,21 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int pin_ballon_bg=0x7f020014;
         public static final int pin_ballon_on_arrow=0x7f020015;
         public static final int plus=0x7f020016;
-        public static final int pubtrans_ic_mylocation_off=0x7f020017;
-        public static final int pubtrans_ic_mylocation_on=0x7f020018;
-        public static final int settings=0x7f020019;
+        public static final int profileimg=0x7f020017;
+        public static final int pubtrans_ic_mylocation_off=0x7f020018;
+        public static final int pubtrans_ic_mylocation_on=0x7f020019;
+        public static final int settings=0x7f02001a;
+        public static final int unsafe=0x7f02001b;
     }
     public static final class id {
         public static final int AddGroup_listImg=0x7f0a0001;
         public static final int AddGroup_listName=0x7f0a0002;
-        public static final int action_settings=0x7f0a0018;
+        public static final int Main_row_imgProfile=0x7f0a0018;
+        public static final int Main_row_imgStatus=0x7f0a001b;
+        public static final int Main_row_linearRow=0x7f0a0017;
+        public static final int Main_row_txtName=0x7f0a0019;
+        public static final int Main_row_txtstatus=0x7f0a001a;
+        public static final int action_settings=0x7f0a001d;
         public static final int alertdialog_alertTxt=0x7f0a0003;
         public static final int alertdialog_btnClose=0x7f0a0005;
         public static final int alertdialog_btnShow=0x7f0a0004;
@@ -80,15 +87,15 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int chatroom_txtReceiveTime=0x7f0a000b;
         public static final int chatroom_txtSendMsg=0x7f0a0007;
         public static final int chatroom_txtSendTime=0x7f0a0006;
-        public static final int container=0x7f0a0017;
+        public static final int container=0x7f0a001c;
         public static final int main_btnPlus=0x7f0a0013;
         public static final int main_btnSetting=0x7f0a0014;
         public static final int main_list=0x7f0a0015;
-        public static final int menu_findmyaddress=0x7f0a001a;
-        public static final int menu_findmylocation=0x7f0a0019;
-        public static final int menu_history=0x7f0a001b;
-        public static final int menu_starttracking=0x7f0a001c;
-        public static final int menu_stoptracking=0x7f0a001d;
+        public static final int menu_findmyaddress=0x7f0a001f;
+        public static final int menu_findmylocation=0x7f0a001e;
+        public static final int menu_history=0x7f0a0020;
+        public static final int menu_starttracking=0x7f0a0021;
+        public static final int menu_stoptracking=0x7f0a0022;
         public static final int row=0x7f0a0000;
     }
     public static final class layout {
@@ -100,8 +107,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int chat_item2=0x7f030005;
         public static final int chatroom=0x7f030006;
         public static final int main=0x7f030007;
-        public static final int map_activity=0x7f030008;
-        public static final int splash=0x7f030009;
+        public static final int main_row=0x7f030008;
+        public static final int map_activity=0x7f030009;
+        public static final int splash=0x7f03000a;
     }
     public static final class menu {
         public static final int main=0x7f090000;

@@ -80,6 +80,21 @@ public class DAO {
 		return mDB.delete(USER_TABLE, USER_ID + " = ?", new String[] { "" + id });
 	}
 
+
+	public Cursor selectUser(String name) {
+		Cursor cs = mDB.query(true, USER_TABLE, new String[] {
+															   USER_ID,
+															   USER_NAME,
+															   USER_PHONENUM, 
+															   USER_ALLOW },
+															   USER_NAME + " = ?", 
+															   new String[] {"" + name}, 
+															   null, null, null, null, null);
+		if(cs != null)
+			cs.moveToFirst();
+		return cs;
+	}
+	
 	public Cursor selectAllUser() {
 		Cursor cs = mDB.query(true, USER_TABLE, new String[] { 
 															   USER_ID,

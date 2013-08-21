@@ -32,7 +32,6 @@
         android:layout_height="0px"
         android:layout_weight="1" >
     </ListView>
-
     <Button
         android:id="@+id/btnChat"
         android:layout_width="match_parent"

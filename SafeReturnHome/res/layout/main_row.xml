@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/Main_row_linearRow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/Main_row_imgProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/profileimg" />
+
+        <RelativeLayout
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:layout_weight="1"
+            
+            android:paddingLeft="10dp" >
+            <TextView
+                android:id="@+id/Main_row_txtName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#4d8693"
+                android:textSize="25sp"
+                android:singleLine="true"
+                android:textStyle="bold"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/Main_row_txtstatus"
+                android:layout_width="wrap_content"
+                android:layout_below="@id/Main_row_txtName"
+                android:layout_alignLeft="@id/Main_row_txtName"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/Main_row_imgStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/unsafe" />
+
+    </LinearLayout>
+
+</LinearLayout>

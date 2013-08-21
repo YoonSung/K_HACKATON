@@ -142,7 +142,7 @@ public class ChatRoom extends Activity implements OnClickListener{
 		msgAdapter.add(msgData);
 		
 		//scroll focus add area
-		msgList.smoothScrollToPosition(msgAdapter.getCount()-1);
+		msgList.smoothScrollToPosition(msgAdapter.getCount());
 	}
 	
 	
