@@ -28,7 +28,6 @@ public class Splash extends Activity {
         GCMRegistrar.checkManifest(this);
 		
 		setContentView(R.layout.splash);
-
 		final String regId = GCMRegistrar.getRegistrationId(this);
 		
 		Log.e(LOG_ERROR, "regId : "+regId);
@@ -102,7 +101,7 @@ public class Splash extends Activity {
 				activity.startActivity(new Intent(activity, Main.class));
 			}
 			
-			activity.finish();
+			//activity.finish();
 		}
 	}
 	

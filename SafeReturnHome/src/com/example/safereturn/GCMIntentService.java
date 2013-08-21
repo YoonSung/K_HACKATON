@@ -27,7 +27,7 @@ public class GCMIntentService extends GCMBaseIntentService{
 			return;
 		
 		final String gcmMsg = "MESSAGE : "+message.getStringExtra("title")
-										  +""
+										  +"  / "
 										  +message.getStringExtra("msg");
 
 		Log.e(LOG_ERROR, "message : "+gcmMsg);

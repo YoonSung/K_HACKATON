@@ -1,6 +1,27 @@
 package com.example.safereturn.util;
 
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.protocol.HTTP;
+import org.apache.http.util.EntityUtils;
+
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -20,6 +41,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.example.safereturn.R;
 import com.example.safereturn.chat.ChatRoom;
+import com.example.safereturn.gcm.GCMCommon;
 
 public class Common {
 	
@@ -122,8 +144,72 @@ public class Common {
 		toast.show();
 	}
 
-	private boolean isScreenOn(){
+	private boolean isScreenOn() {
     	PowerManager pm = (PowerManager)context.getSystemService(Context.POWER_SERVICE);
     	return pm.isScreenOn();
     }
+	
+//	public static String sendHttpData() throws UnsupportedEncodingException {
+//		try {
+//			HttpClient client = new DefaultHttpClient();
+//			String postURL = "http://app.dooit.co.kr/member/login_check";
+//			HttpPost post = new HttpPost(postURL);
+//			post.addHeader("User-Agent", "DooitLocalResearchApp" + version + ";AppId:"+pushId);
+//			List<NameValuePair> params = new ArrayList<NameValuePair>();
+//			params.add(new BasicNameValuePair("regId", phone));
+//			params.add(new BasicNameValuePair("phone_id", phoneId));
+//			params.add(new BasicNameValuePair("push_id", pushId));
+//			params.add(new BasicNameValuePair("id", id));
+//			params.add(new BasicNameValuePair("password", pw));
+//			UrlEncodedFormEntity ent = new UrlEncodedFormEntity(params,
+//					HTTP.UTF_8);
+//			post.setEntity(ent);
+//			HttpResponse responsePOST = client.execute(post);
+//			HttpEntity resEntity = responsePOST.getEntity();
+//			return EntityUtils.toString(resEntity);
+//		} catch (Exception e) {
+//			return "0";
+//		}
+//		}
+//	}
+	
+	public static void sendHttp(String endpoint, String message) {
+		URL url;
+		
+        try {
+            url = new URL(GCMCommon.SERVER_URL+endpoint);
+        } catch (MalformedURLException e) {
+            throw new IllegalArgumentException("invalid url: " + endpoint);
+        }
+        
+        String parameter ="regId=" + GCMCommon.getRegId()+"&"+"message="+ message;
+        
+        byte[] bytes = parameter.getBytes();
+        HttpURLConnection conn = null;
+        try {
+            conn = (HttpURLConnection) url.openConnection();
+            conn.setDoOutput(true);
+            conn.setUseCaches(false);
+            conn.setFixedLengthStreamingMode(bytes.length);
+            conn.setRequestMethod("POST");
+
+            // post the request
+            OutputStream out = conn.getOutputStream();
+            out.write(bytes);
+            out.close();
+
+            // handle the response
+            int status = conn.getResponseCode();
+            if (status != 200) {
+            	//handle error (todo)
+            	throw new IOException("Post failed with error code " + status);
+            }
+        } catch (Exception e) {
+        	e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                conn.disconnect();
+            }
+        }
+	}
 }

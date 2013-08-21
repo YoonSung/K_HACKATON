@@ -1,16 +1,15 @@
 package com.example.safereturn.gcm;
 
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Map.Entry;
+
 import android.content.Context;
-import android.os.PowerManager;
 
 import com.google.android.gcm.GCMRegistrar;
 
@@ -39,13 +38,14 @@ public class GCMCommon {
 
         // Once GCM returns a registration id, we need to register it in the server. 
         try {
-                post(GCMCommon.SERVER_URL, params);
+                post("/message/create");
                 GCMRegistrar.setRegisteredOnServer(context, true);
                 return true;
             } catch (IOException e) {
             	e.printStackTrace();
             }
-        return false;
+        return true;
+        //return false;
     }
 
     /**
@@ -56,7 +56,7 @@ public class GCMCommon {
         Map<String, String> params = new HashMap<String, String>();
         params.put("regId", regId);
         try {
-            post(GCMCommon.SERVER_URL, params);
+        	post("/message/create");
             GCMRegistrar.setRegisteredOnServer(context, false);
         } catch (IOException e) {
         	//handle error (todo)
@@ -69,27 +69,22 @@ public class GCMCommon {
     }
     
     
-    private static void post(String endpoint, Map<String, String> params)
+    private static void post(String endpoint)
             throws IOException {
         URL url;
+        String message = "clinet test";
         try {
-            url = new URL(endpoint);
+            url = new URL(GCMCommon.SERVER_URL+endpoint);
         } catch (MalformedURLException e) {
             throw new IllegalArgumentException("invalid url: " + endpoint);
         }
-        StringBuilder bodyBuilder = new StringBuilder();
-        Iterator<Entry<String, String>> iterator = params.entrySet().iterator();
-        // constructs the POST body using the parameters
-        while (iterator.hasNext()) {
-            Entry<String, String> param = iterator.next();
-            bodyBuilder.append(param.getKey()).append('=')
-                    .append(param.getValue());
-            if (iterator.hasNext()) {
-                bodyBuilder.append('&');
-            }
-        }
-        String body = bodyBuilder.toString();
-        byte[] bytes = body.getBytes();
+        
+        String json ="[{ \"regId\":\"" + GCMCommon.regId+"\","
+        				+"\"message\":\""+ message + "\"}];";
+        		
+        
+        
+        byte[] bytes = json.getBytes();
         HttpURLConnection conn = null;
         try {
             conn = (HttpURLConnection) url.openConnection();
@@ -97,12 +92,14 @@ public class GCMCommon {
             conn.setUseCaches(false);
             conn.setFixedLengthStreamingMode(bytes.length);
             conn.setRequestMethod("POST");
-            conn.setRequestProperty("Content-Type",
-                    "application/x-www-form-urlencoded;charset=UTF-8");
+            //conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
             // post the request
             OutputStream out = conn.getOutputStream();
-            out.write(bytes);
-            out.close();
+//            out.write(bytes);
+//            out.close();
+            DataOutputStream dos = new DataOutputStream(out);
+            dos.writeBytes("hello dongkuk");
+            
             // handle the response
             int status = conn.getResponseCode();
             if (status != 200) {

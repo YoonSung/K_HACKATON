@@ -20,6 +20,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import com.example.safereturn.R;
 import com.example.safereturn.gcm.GCMCommon;
+import com.example.safereturn.util.Common;
 import com.google.android.gcm.server.Message;
 import com.google.android.gcm.server.Result;
 import com.google.android.gcm.server.Sender;
@@ -57,41 +58,9 @@ public class ChatRoom extends Activity implements OnClickListener{
 	    
 	    //Initialize variables start
 	    btnMsgSend = (Button)findViewById(R.id.chatroom_btnMsgSend);
-	    //btnMsgSend.setOnClickListener(this);
+	    btnMsgSend.setOnClickListener(this);
 	    
 	    //test
-	    btnMsgSend.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				//TEST CODE START
-				
-				new Thread(new Runnable() {
-					@Override
-					public void run() {
-						Sender sender = new Sender(GCMCommon.API_KEY);
-						Message message = new Message.Builder().addData("title", "")
-															   .addData("msg", edtMsgBox.getText().toString()).build();
-						
-						try {
-							String regId = GCMCommon.getRegId();//GCMRegistrar.getRegistrationId(ChatRoom.this);
-							System.out.println("   chatroom   "+regId);
-							Result result = sender.send(message, regId, 5);
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-					}
-				}).start();
-				
-				//TEST CODE END
-			}
-		});
-	    
-	    
-	    
-	    
-	    
 	    btnSendTest= (Button)findViewById(R.id.chatroom_btnSendTest);
 	    btnSendTest.setOnClickListener(this);
 	    
@@ -100,6 +69,8 @@ public class ChatRoom extends Activity implements OnClickListener{
 	    
 	    btnDateTest= (Button)findViewById(R.id.chatroom_btnDate);
 	    btnDateTest.setOnClickListener(this);
+	    //test
+	    
 	    
 	    edtMsgBox = (EditText)findViewById(R.id.chatroom_edtMsg);
 	    msgList = (ListView)findViewById(R.id.chatroom_chatListView);
@@ -127,8 +98,20 @@ public class ChatRoom extends Activity implements OnClickListener{
 		case R.id.chatroom_btnMsgSend:
 			msgData = new ChatMessage(0, edtMsgBox.getText().toString(), timeFormat.format(new Date()));
 			break;
+			
 		case R.id.chatroom_btnSendTest:
+			new Thread(new Runnable() {
+				public void run() {
+					try {
+						Thread.sleep(1000);
+						Common.sendHttp("/message/create", edtMsgBox.getText().toString());
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}).start();
 			msgData = new ChatMessage(0, edtMsgBox.getText().toString(), timeFormat.format(new Date()));
+			edtMsgBox.setText("");
 			break;
 		case R.id.chatroom_btnReceiveTest:
 			msgData = new ChatMessage(1, edtMsgBox.getText().toString(), timeFormat.format(new Date()));

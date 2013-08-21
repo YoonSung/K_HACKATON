@@ -69,6 +69,7 @@
             android:name=".util.AlertDialog"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
+        <activity android:name=".nmap.AddSafetyZone"></activity>
     </application>
 
 </manifest>
