@@ -48,8 +48,7 @@ public class Splash extends Activity {
 
                     @Override
                     protected Void doInBackground(Void... params) {
-                        boolean registered =
-                                GCMCommon.register(context, regId);
+                        boolean registered = GCMCommon.register(context, regId);
                         // At this point all attempts to register with the app
                         // server failed, so we need to unregister the device
                         // from GCM - the app will try to register again when
@@ -95,13 +94,13 @@ public class Splash extends Activity {
 			boolean isFirst = common.isFirstLogin("first");
 			
 			if (isFirst) {
-				//common.savePreference("first", false);
+				common.savePreference("first", false);
 				activity.startActivity(new Intent(activity, AddGroup.class));
 			} else {
 				activity.startActivity(new Intent(activity, Main.class));
 			}
 			
-			//activity.finish();
+			activity.finish();
 		}
 	}
 	
@@ -110,7 +109,7 @@ public class Splash extends Activity {
         if (mRegisterTask != null) {
             mRegisterTask.cancel(true);
         }
-        GCMRegistrar.onDestroy(this);
+        GCMRegistrar.onDestroy(getApplicationContext());
         super.onDestroy();
     }
 }

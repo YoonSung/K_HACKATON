@@ -175,7 +175,14 @@ public class DAO {
 	public static final String TIME_START_MINUTE = "sminute";
 	public static final String TIME_END_HOUR = "ehour";
 	public static final String TIME_END_MINUTE = "eminute";
-
+	public static final String TIME_SET_MON = "mon";
+	public static final String TIME_SET_TUE = "tue";
+	public static final String TIME_SET_WED = "wed";
+	public static final String TIME_SET_THU = "thu";
+	public static final String TIME_SET_FRI = "fri";
+	public static final String TIME_SET_SAT = "sat";
+	public static final String TIME_SET_SUN = "sun";
+	
 	private static final String TIME_CREATE = "create table if not exists "
 							  + TIME_TABLE
 							  + "("
@@ -183,16 +190,30 @@ public class DAO {
 							  + TIME_START_HOUR  + " integer not null, "
 							  + TIME_START_MINUTE + " integer not null,"
 							  + TIME_END_HOUR + " integer not null, "
-							  + TIME_END_MINUTE + " integer not null);";
+							  + TIME_END_MINUTE + " integer not null,"
+							  + TIME_SET_MON + " integer not null,"
+							  + TIME_SET_TUE + " integer not null,"
+							  + TIME_SET_WED + " integer not null,"
+							  + TIME_SET_THU + " integer not null,"
+							  + TIME_SET_FRI + " integer not null,"
+							  + TIME_SET_SAT + " integer not null,"
+							  + TIME_SET_SUN + " integer not null);";
 
 	// if insert failed, return -1
-	public long insertTime(int sHour, int sMinute, int eHour, int eMinute) {
+	public long insertTime(int sHour, int sMinute, int eHour, int eMinute, int mon, int tue, int wed, int thu, int fri, int sat, int sun) {
 		
 		ContentValues cv = new ContentValues();
 		cv.put(TIME_START_HOUR, sHour);
 		cv.put(TIME_START_MINUTE, sMinute);
 		cv.put(TIME_END_HOUR, eHour);
 		cv.put(TIME_END_MINUTE, eMinute);
+		cv.put(TIME_SET_MON, mon);
+		cv.put(TIME_SET_TUE, tue);
+		cv.put(TIME_SET_WED, wed);
+		cv.put(TIME_SET_THU, thu);
+		cv.put(TIME_SET_FRI, fri);
+		cv.put(TIME_SET_SAT, sat);
+		cv.put(TIME_SET_SUN, sun);
 
 		return mDB.insert(TIME_TABLE, null, cv);
 	}
@@ -219,7 +240,14 @@ public class DAO {
 																TIME_START_HOUR, 
 																TIME_START_MINUTE, 
 																TIME_END_HOUR, 
-																TIME_END_MINUTE },
+																TIME_END_MINUTE,
+																TIME_SET_MON,
+																TIME_SET_TUE,
+																TIME_SET_WED,
+																TIME_SET_THU,
+																TIME_SET_FRI,
+																TIME_SET_SAT,
+																TIME_SET_SUN},
 																null, null, null, null, null, null);
 		if (cs != null)
 			cs.moveToFirst();

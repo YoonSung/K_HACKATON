@@ -72,12 +72,6 @@ public class AddGroup extends ListActivity {
 		return managedQuery(people, projection, null, selectionArgs, sortOrder);
 	}
 
-	@Override
-	protected void onStop() {
-		super.onStop();
-		db.close();
-	}
-
 	class PersonAdapter extends ArrayAdapter<Person> implements OnClickListener {
 
 		private ArrayList<Person> instanceArray;
@@ -156,7 +150,8 @@ public class AddGroup extends ListActivity {
 			number = phoneCursor
 					.getString(phoneCursor
 							.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-
+			phoneCursor.close();
+			
 			String message = "이름 : " + name + "\n" + "전화번호 : " + number;
 
 			new AlertDialog.Builder(AddGroup.this)
@@ -181,6 +176,7 @@ public class AddGroup extends ListActivity {
 														public void onClick( DialogInterface dialog, int which ) {
 															db.insertUser( currentPerson.getName(), number, false );
 															startActivity( new Intent( AddGroup.this, Main.class ) );
+															db.close();
 															finish();
 														}}).create().show();
 								}
